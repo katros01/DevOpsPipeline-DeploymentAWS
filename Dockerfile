@@ -1,5 +1,5 @@
 # Use an official Java runtime as the base image (JDK 21)
-FROM openjdk:21-jre-slim
+FROM eclipse-temurin:21-jdk
 
 # Copy the Spring Boot app JAR
 COPY target/my-spring-app.jar my-spring-app.jar
