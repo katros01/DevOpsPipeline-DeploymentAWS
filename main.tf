@@ -49,8 +49,17 @@ resource "aws_security_group" "allow_http" {
   description = "Allow HTTP inbound traffic"
 
   ingress {
+    description = "HTTP"
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -61,6 +70,10 @@ resource "aws_security_group" "allow_http" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+      Name = "allow_WEB"
+    }
 }
 
 # EC2 Instance
@@ -69,9 +82,6 @@ resource "aws_instance" "lab_server" {
   instance_type = "t2.micro"
   availability_zone = "us-east-1a"
   key_name = "main_key"
-
-#   security_groups = [aws_security_group.allow_http.name]
-#   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
 
   tags = {
     Name = "lab_server"
