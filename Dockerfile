@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jdk
 
 # Copy the Spring Boot app JAR
-COPY target/my-spring-app.jar my-spring-app.jar
+COPY target/DevOpsPipeline-DeploymentAWS-0.0.1-SNAPSHOT.jar my-spring-app.jar
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
